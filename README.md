@@ -29,7 +29,7 @@ yarn add @muban/template
 
 Create our template:
 ```ts
-import { html } from "@muban/muban-template";
+import { html } from "@muban/template";
 
 type MyComponentProps = {
   welcomeText: string;
