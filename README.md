@@ -43,3 +43,14 @@ function myComponentTemplate({ welcomeText }: MyComponentProps, ref?: string) {
   `;
 }
 ```
+
+### Exports
+
+* `html` – the tagged template string, the core of this library.
+* `unsafeHTML` – to render any "HTML content" coming from an API (that you trust).
+* `jsonScriptTemplate` – a helper function that renders a JSON script tag for an object that can 
+  be used instead of a lot of different data attributes, or to use objects as props.
+* `ComponentTemplate` – a `type` for a Muban Template Function.
+* `ComponentTemplateResult` – a `type` for the Template result (to be consumed by other code).
+* `TemplateMap` – a helper type to extract the "props type" out of a template function as part of 
+  a Record of templates, and formats them to be used in a name/props data structure.
