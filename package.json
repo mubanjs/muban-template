@@ -1,6 +1,6 @@
 {
   "name": "@muban/template",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Writing templates for Muban components during development",
   "keywords": [
     "muban",
