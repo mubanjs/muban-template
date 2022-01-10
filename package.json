@@ -29,7 +29,8 @@
     "clean:npm": "shx rm -rf dist",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "test": "jest ./src/",
-    "check-types": "tsc --project tsconfig.json --noEmit --noUnusedLocals"
+    "check-types": "tsc --project tsconfig.json --noEmit --noUnusedLocals",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "htm": "^3.1.0",
