@@ -13,5 +13,15 @@ function h(type: any, props: Record<string, any>, ...children: Array<any>) {
   return vhtml(type, props, children);
 }
 
-// the template tag to render HTML strings in muban templats
-export const html = htm.bind(h);
+// the template tag to render HTML strings in muban templates
+export const html = (strings: TemplateStringsArray, ...values: Array<any>): any => {
+  try {
+    return htm.bind(h)(strings, ...values);
+  } catch (e) {
+    // throw a custom error message, since the built-in html parse errors are not useful at all
+    throw new Error(`Error parsing muban template. Most likely, your html template is malformed.
+
+The template that gave the error is:
+${strings.join('${}')}`);
+  }
+};
