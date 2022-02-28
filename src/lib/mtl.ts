@@ -5,12 +5,27 @@ import htm from 'htm';
 import vhtml from 'vhtml';
 
 /**
+ * Function to turn falsy boolean prop values to the string 'false'
+ */
+function cleanFalsyBooleans(props: Record<string, any>): Record<string, any> {
+  const stringifiedProps = { ...props };
+
+  Object.entries(stringifiedProps).forEach(([key, value]) => {
+    if(value === false) {
+      stringifiedProps[key] = 'false';
+    }
+  })
+
+  return stringifiedProps;
+}
+
+/**
  * Proxy function between html and vhtml to modify the DOM structure
  */
 function h(type: any, props: Record<string, any>, ...children: Array<any>) {
-  // TODO: add logic for props to mutate them based on possible functions
-
-  return vhtml(type, props, children);
+  // If more prop modifier functions like cleanFalsyBooleans are added we could pipe them here
+  const mutatedProps = cleanFalsyBooleans(props);
+  return vhtml(type, mutatedProps, children);
 }
 
 // the template tag to render HTML strings in muban templates

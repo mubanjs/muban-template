@@ -29,5 +29,8 @@ describe('html', () => {
     it('should render html entities correctly using dangerouslySetInnerHTML', () => {
       expect(html`<span dangerouslySetInnerHTML=${{ __html: '&amp;&lt;&gt;&quot;&apos;' }}></span>`).toEqual('<span>&amp;&lt;&gt;&quot;&apos;</span>')
     });
+    it('should allow false values on data attributes', () => {
+      expect(html`<div data-test=${false}>foo</div>`).toEqual('<div data-test="false">foo</div>');
+    });
   })
 });
