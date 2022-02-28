@@ -7,7 +7,7 @@ import vhtml from 'vhtml';
 /**
  * Function to turn falsy boolean prop values to the string 'false'
  */
-function cleanFalsyBooleans(props: Record<string, any>): Record<string, any> {
+export function cleanFalsyBooleans(props: Record<string, any>): Record<string, any> {
   const stringifiedProps = { ...props };
 
   Object.entries(stringifiedProps).forEach(([key, value]) => {
