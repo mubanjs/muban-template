@@ -11,7 +11,7 @@ function cleanFalsyBooleans(props: Record<string, any>): Record<string, any> {
   const stringifiedProps = { ...props };
 
   Object.entries(stringifiedProps).forEach(([key, value]) => {
-    if(value === false) {
+    if(value === false && key.includes('data-')) {
       stringifiedProps[key] = 'false';
     }
   })
