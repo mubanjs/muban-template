@@ -1,4 +1,4 @@
-import { cleanFalsyBooleans, html } from './mtl';
+import { processFalsyBooleanProps, html } from './mtl';
 import { unsafeHTML } from "./utils/unsafeHtml";
 
 describe('html', () => {
@@ -32,8 +32,8 @@ describe('html', () => {
   })
 
   describe('when dealing with falsy values', () => {
-    it('cleanFalsyBooleans() should stringify false values in data attributes only', () => {
-      expect(cleanFalsyBooleans({
+    it('processFalsyBooleanProps() should stringify false values in data attributes only', () => {
+      expect(processFalsyBooleanProps({
         'data-foo': false,
         checked: false
       }))

@@ -7,25 +7,21 @@ import vhtml from 'vhtml';
 /**
  * Function to turn falsy boolean prop values to the string 'false'
  */
-export function cleanFalsyBooleans(props: Record<string, any>): Record<string, any> {
-  const stringifiedProps = { ...props };
+export function processFalsyBooleanProps(props: Record<string, unknown> | null): Record<string, unknown> | null {
+  if(props === null) return props;
 
-  Object.entries(stringifiedProps).forEach(([key, value]) => {
-    if(value === false && key.includes('data-')) {
-      stringifiedProps[key] = 'false';
-    }
-  })
-
-  return stringifiedProps;
+  return Object.fromEntries(Object.entries(props).map(([key, value]) => {
+    return [key, value === false && key.includes('data-') ? 'false' : value]
+  }));
 }
 
 /**
  * Proxy function between html and vhtml to modify the DOM structure
  */
 function h(type: any, props: Record<string, any>, ...children: Array<any>) {
-  // If more prop modifier functions like cleanFalsyBooleans are added we could pipe them here
-  const mutatedProps = cleanFalsyBooleans(props);
-  return vhtml(type, mutatedProps, children);
+  // If more prop modifier functions like processFalsyBooleanProps are added we could pipe them here
+  const processedProps = processFalsyBooleanProps(props);
+  return vhtml(type, processedProps, children);
 }
 
 // the template tag to render HTML strings in muban templates
