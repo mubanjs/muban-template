@@ -92,3 +92,31 @@ which properly renders as
 ```
 
 Use this to render any html content that you trust (e.g. coming from CMS with sanitized output).
+
+## False values on data attributes
+
+HTML data attributes with false values will be stringified in the resulting HTML
+
+```html
+html`<div data-test=${false}>foo</div>`
+```
+
+Will become
+
+```javascript
+<div data-test="false">foo</div>
+```
+
+This only will happen for data attributes (attributes that start with `data-`)
+
+```javascript
+html`<div data-test=${false} another-attribute=${false}>foo</div>`
+```
+
+Will become
+
+```javascript
+<div data-test="false">foo</div>
+```
+
+Non data attributes with a false value will be ignored in the resulting HTML
