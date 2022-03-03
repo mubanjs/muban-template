@@ -95,7 +95,7 @@ Use this to render any html content that you trust (e.g. coming from CMS with sa
 
 ## False values on data attributes
 
-HTML data attributes with false values will be stringified in the resulting HTML
+HTML `data-` attributes with `false` values will be stringified in the resulting HTML
 
 ```html
 html`<div data-test=${false}>foo</div>`
@@ -119,4 +119,4 @@ Will become
 <div data-test="false">foo</div>
 ```
 
-Non data attributes with a false value will be ignored in the resulting HTML
+Non data attributes with a `false` value will be ignored in the resulting HTML
