@@ -1,4 +1,4 @@
-import { html } from './mtl';
+import { processFalsyBooleanProps, html } from './mtl';
 import { unsafeHTML } from "./utils/unsafeHtml";
 
 describe('html', () => {
@@ -28,6 +28,22 @@ describe('html', () => {
     });
     it('should render html entities correctly using dangerouslySetInnerHTML', () => {
       expect(html`<span dangerouslySetInnerHTML=${{ __html: '&amp;&lt;&gt;&quot;&apos;' }}></span>`).toEqual('<span>&amp;&lt;&gt;&quot;&apos;</span>')
+    });
+  })
+
+  describe('when dealing with falsy values', () => {
+    it('processFalsyBooleanProps() should stringify false values in data attributes only', () => {
+      expect(processFalsyBooleanProps({
+        'data-foo': false,
+        checked: false
+      }))
+      .toEqual({
+        'data-foo': 'false',
+        checked: false
+      })
+    });
+    it('should allow false values on data attributes', () => {
+      expect(html`<div data-test=${false}>foo</div>`).toEqual('<div data-test="false">foo</div>');
     });
   })
 });
